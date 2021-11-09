@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/var/www/rtt/css/style2.css">
+    <link rel="stylesheet" type="text/css" href="/RTT-B-Csoport-Beadando/rtt-site/css/style2.css">
 </head>
 <body>
 
