@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="/var/www/rtt/css/Drag-Drop-File-Input-Upload.css" />
-    <link rel="stylesheet" href="/var/www/rtt/css/style4.css" />
+    <link rel="stylesheet" href="/RTT-B-Csoport-Beadando/rtt-site/css/Drag-Drop-File-Input-Upload.css" />
+    <link rel="stylesheet" href="/RTT-B-Csoport-Beadando/rtt-site/css/style4.css" />
 </head>
 <body>
     <div class="files color form-group mb-3">
