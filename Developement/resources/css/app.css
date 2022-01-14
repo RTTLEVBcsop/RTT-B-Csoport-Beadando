@@ -1,0 +1,9 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+body {
+    padding-bottom: 50px;
+    background: linear-gradient(
+        45deg
+        , #c1f7ff, #c5ceff);
+}
