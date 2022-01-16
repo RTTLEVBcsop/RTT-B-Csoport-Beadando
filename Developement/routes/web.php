@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,12 @@ Route::get('/upload', function () {
     return view('upload');
 })->middleware(['auth'])->name('upload');
 
+Route::post('/upload', [UploadController::class, 'uploadPost'])->name('file.upload.post');
+
 Route::get('/bio', function () {
     return view('bio');
 })->name('bio');
 
-require __DIR__.'/auth.php';
 
+
+require __DIR__ . '/auth.php';

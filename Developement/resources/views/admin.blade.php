@@ -10,13 +10,56 @@
         
 
         class usr {
-            constructor (name, email) {
+            constructor (name, email, id) {
                 this.name = name;
                 this.email = email;
+                this.id = id;
                 this.create();
             }
 
             create() {
+                var usr = this;
+                var tableRow = document.createElement("tr");
+                var form = document.createElement("form");
+                var tableBodyId = document.getElementById("bodyID");
+
+                tableRow.innerHTML = `
+                <form action="editusr" method="POST">
+                <td id="tdname">
+                    `+usr.name+`
+                </td>
+                <td id="tdmail">
+                    `+usr.email+`
+                </td>
+                <td>
+                        <input type="button" value="Módossítás" id="modify">
+                        <input type="button" value="Törlés">
+                </td>
+                </form>
+                `;
+                
+                tableBodyId.appendChild(tableRow);
+
+                var modify = document.getElementById("modify");
+                modify.onclick = function() {
+                    var tdname = document.getElementById("tdname");
+                    tdname.innerHTML = `
+                        <input type="hidden" value="`+usr.id+`" name="idin">
+                        <input type="text" placeholder="`+usr.name+`" id="namein">
+                    `;
+                    var tdmail = document.getElementById("tdmail");
+                    tdmail.innerHTML = `
+                        <input type="text" placeholder="`+usr.email+`" id="mailin">
+                    `;
+                    var a = document.createElement("a");
+                    a.href = ""
+                    modify.after(`<a href="editusr?id=`+usr.id+`&name=`+document.getElementById("namein").value+`&email=`+document.getElementById("mailin")+`" id="save" hidden>Mentés</a>`);
+                    document.getElementById("modify").hidden = true;
+                    document.getElementById("save").hidden = false;
+                }
+
+
+                /*
                 var usr = this;
                 var le = document.getElementById("list");
                 var d1 = document.createElement("div");
@@ -41,22 +84,21 @@
                     var b2 = document.createElement("input");
                     b2.type = "submit";
                     b2.value = "Mentés";
-
-                    tableRow.innerHTML = "<td>";
-
+                    tableRow.innerHTML = "<td><input type=\"hidden\" value=\""+usr.id+"\"><input type=\"text\" placeholder=\""+usr.name+"\" name=\"name\"></td><td><input type=\"text\" placeholder=\""+usr.email+"\" name=\"email\"></td>";
                     b1.hidden = true;
-                    p1.appendChild(b2);
+                    f1.appendChild(b2);
+                    d1.appendChild(f1);
+                    tableRow.appendChild(f1);
                 };
-
-                var b2 = document.createElement("input");
-                b2.type = "button";
-                b2.value = "Törlés";
-
+                var bd = document.createElement("input");
+                bd.type = "button";
+                bd.value = "Törlés";
                 f1.appendChild(b1);
-                f1.appendChild(b2);
+                f1.appendChild(bd);
                 d1.appendChild(f1);
                 tableRow.appendChild(d1);
                 tableBodyId.appendChild(tableRow);
+                */
             };
         }
     </script>
@@ -75,7 +117,7 @@
                             <?php
                                 foreach (DB::table("users")->get() as $key => $data) {
                                     if (Auth::user()->name != $data->name) {
-                                        echo "<script>new usr(\"$data->name\", \"$data->email\");</script>";
+                                        echo "<script>new usr(\"$data->name\", \"$data->email\", $data->id);</script>";
                                     }
                                 }
                             ?>
