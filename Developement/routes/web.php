@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileUploadController;
+use Facade\FlareClient\Stacktrace\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +31,20 @@ Route::get('/upload', function () {
     return view('upload');
 })->middleware(['auth'])->name('upload');
 
+Route::get('/editusr', function () {
+    return view('editusr');
+})->middleware(['auth'])->name('editusr');
+
+Route::get('/delusr', function () {
+    return view('delusr');
+})->middleware(['auth'])->name('delusr');
+
+Route::post('/upload', [FileUploadController::class, 'uploadPost'])->name('file.upload.post');
+
 Route::get('/bio', function () {
     return view('bio');
 })->name('bio');
 
-require __DIR__.'/auth.php';
 
+
+require __DIR__ . '/auth.php';

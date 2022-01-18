@@ -20,8 +20,64 @@
             create() {
                 var usr = this;
                 var tableRow = document.createElement("tr");
-                var form = document.createElement("form");
-                var tableBodyId = document.getElementById("bodyID");
+                var tableBody = document.getElementById("bodyID");
+
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
+                var p1 = document.createElement("p");
+                var p2 = document.createElement("p");
+
+                p1.innerText = usr.name;
+                p2.innerText = usr.email;
+
+                var a1 = document.createElement("a");
+                var a2 = document.createElement("a");
+                var a3 = document.createElement("a");
+                var in1 = document.createElement("input");
+                var in2 = document.createElement("input");
+                var in3 = document.createElement("input");
+                in1.type = "hidden";
+                in1.value = usr.id;
+                in1.hidden = true;
+                in2.placeholder = usr.name;
+                in2.hidden = true;
+                in3.placeholder = usr.email;
+                in3.hidden = true;
+                a1.innerText="Szerkesztés";
+                a2.innerText="Mentés";
+                a2.hidden = true;
+                a3.innerText="Törlés";
+                a3.href  = "/delusr?id="+usr.id;
+                a1.onclick = () => {
+                    p1.hidden = true;
+                    p2.hidden = true;
+                    in1.hidden = false;
+                    in2.hidden = false;
+                    in3.hidden = false;
+                    a2.hidden = false;
+                    a1.hidden = true;
+                }
+                a2.onclick = function () {
+                    a2.href = "/editusr?id="+usr.id+"&name="+in2.value+"&email="+in3.value;
+                }
+
+                td1.appendChild(p1);
+                td2.appendChild(p2);
+
+                td1.appendChild(in1);
+                td1.appendChild(in2);
+                td2.appendChild(in3);
+                
+                td3.appendChild(a1);
+                td3.appendChild(a2);
+                td3.appendChild(a3);
+
+                tableRow.appendChild(td1);
+                tableRow.appendChild(td2);
+                tableRow.appendChild(td3);
+                tableBody.appendChild(tableRow);
+                /*
 
                 tableRow.innerHTML = `
                 <form action="editusr" method="POST">
@@ -33,6 +89,7 @@
                 </td>
                 <td>
                         <input type="button" value="Módossítás" id="modify">
+                        <p id="savep"><a id="save" hidden>Mentés</a></p>
                         <input type="button" value="Törlés">
                 </td>
                 </form>
@@ -52,12 +109,18 @@
                         <input type="text" placeholder="`+usr.email+`" id="mailin">
                     `;
                     var a = document.createElement("a");
-                    a.href = ""
-                    modify.after(`<a href="editusr?id=`+usr.id+`&name=`+document.getElementById("namein").value+`&email=`+document.getElementById("mailin")+`" id="save" hidden>Mentés</a>`);
+                    a.href = "";
+                    function datachanged() {
+                        console.log("Változott!")
+                        document.getElementById("savep").innerHTML = `<a href="editusr?id=`+usr.id+`&name=`+document.getElementById("namein").value+`&email=`+document.getElementById("mailin").value+`" id="save">Mentés</a>`;
+                    }
+                    document.getElementById("namein").onkeypress = function () {datachanged();}
+                    document.getElementById("mailin").onkeypress = function () {datachanged();}
                     document.getElementById("modify").hidden = true;
                     document.getElementById("save").hidden = false;
                 }
 
+                */
 
                 /*
                 var usr = this;
